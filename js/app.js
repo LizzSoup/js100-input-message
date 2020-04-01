@@ -1,28 +1,18 @@
+// submit = #submitBtn, input = #message, alert = .feedback + .show
+const form = document.getElementById('message-form');
+const btn = document.getElementById('submitBtn'); 
 
-(function() {
-//Select the input element
-const form = document.querySelector('#message-form')
-//Set up Submit Button
-form.addEventListener('submit', function(e){
-    // prevent the form's default submission action
-    e.preventDefault()
-    //Get user's input from from
-    const message = document.querySelector('#message')
-    const feedback = document.querySelector('.feedback')
-    const messageContent = document.querySelector('.message-content')
+form.addEventListener('click', displayMsg);
 
-    if (message.value === ''){
-        feedback.classList.add('show')
-        setTimeout(function(){
-        feedback.classList.remove('show')
-        }, 2000)
-    } else {
-        //Change message content and clear the message input
-        messageContent.textContent = message.value
-        message.value = ''
-    }
-})
-})()
-
-
-
+function displayMsg() {
+  const input = document.getElementById('message').value;
+  const msg = document.querySelector('.message-content');
+  const alert = document.getElementById('alert');  
+  if (input) {
+    alert.classList.remove('show');
+    msg.innerHTML = input;
+  } else {
+    alert.classList.add('show');
+  }
+  return false;
+};
